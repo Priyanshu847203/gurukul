@@ -1,0 +1,137 @@
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+.navbar{
+    background:#07142f;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+}
+
+.logo{
+    margin-left:-30px;
+    display:flex;
+    align-items:center;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-right:15px;
+    border:3px solid white;
+}
+
+.logo span{
+    color:#ffc107;
+    font-size:28px;
+    font-weight:bold;
+}
+
+
+
+.navbar ul{
+    list-style:none;
+    display:flex;
+}
+
+.navbar ul li{
+    margin-left:30px;
+}
+
+.navbar ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.navbar ul li a:hover{
+    color:#ffc107;
+}
+
+.hero{
+    height:85vh;
+    background:linear-gradient(to right,#0b1d51,#2747c7);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:30px;
+    margin-bottom:30px;
+    max-width:900px;
+}
+
+.btn{
+    text-decoration:none;
+    background:white;
+    color:#2747c7;
+    padding:15px 40px;
+    border-radius:40px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#ffc107;
+    color:black;
+}
+</style>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurukul Classes</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPO2C_60H439AKzvgot2uvPBQ5oEb0SrEFYw&s" alt="Logo">
+            <span>Gurukul Classes</span>
+        </div>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Faculty</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

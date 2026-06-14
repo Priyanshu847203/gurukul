@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef2f7;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#07142f;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h2{
+    font-size:30px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+}
+
+.navbar a:hover{
+    color:#ffd700;
+}
+
+/* Header */
+
+.header{
+    background:linear-gradient(135deg,#2747c7,#1b2f8a);
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.header h1{
+    font-size:42px;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+/* Container */
+
+.container{
+    width:92%;
+    margin:40px auto;
+}
+
+/* Attendance Box */
+
+.attendance-box{
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0px 5px 20px rgba(0,0,0,.15);
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#07142f;
+    color:white;
+    padding:15px;
+    font-size:18px;
+}
+
+table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f5f8ff;
+}
+
+/* Status */
+
+.present-label{
+    color:green;
+    font-weight:bold;
+}
+
+.absent-label{
+    color:red;
+    font-weight:bold;
+}
+
+input[type="radio"]{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+}
+
+/* Button */
+
+.button-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+.button-area button{
+    background:#2747c7;
+    color:white;
+    border:none;
+    padding:15px 40px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.button-area button:hover{
+    background:#07142f;
+}
+
+/* Note */
+
+.note{
+    margin-bottom:20px;
+    background:#e8f4ff;
+    color:#003366;
+    padding:15px;
+    border-left:5px solid #2747c7;
+    border-radius:8px;
+}
+
+/* Footer */
+
+.footer{
+    margin-top:40px;
+    background:#07142f;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+table{
+    font-size:14px;
+}
+
+.header h1{
+    font-size:30px;
+}
+
+.navbar{
+    flex-direction:column;
+    gap:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<h2>Gurukul Classes</h2>
+
+<div>
+<a href="{% url 'teacher_dashboard' %}">Dashboard</a>
+<a href="{% url 'logout' %}">Logout</a>
+</div>
+
+</div>
+
+<div class="header">
+
+<h1>Mark Attendance</h1>
+
+<p>Select Present or Absent for Every Student</p>
+
+</div>
+
+<div class="container">
+
+<div class="attendance-box">
+
+<div class="note">
+<b>Note:</b> By default every student is marked <b>Absent</b>. Select <b>Present</b> for students who attended the class.
+</div>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<table>
+
+<tr>
+    <th>Roll No</th>
+    <th>Student Name</th>
+    <th>Course</th>
+    <th>Present</th>
+    <th>Absent</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student.roll_no }}</td>
+
+<td>{{ student.name }}</td>
+
+<td>{{ student.course }}</td>
+
+<td>
+<input
+type="radio"
+name="attendance_{{ student.id }}"
+value="Present">
+<span class="present-label">Present</span>
+</td>
+
+<td>
+<input
+type="radio"
+name="attendance_{{ student.id }}"
+value="Absent"
+checked>
+<span class="absent-label">Absent</span>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="button-area">
+
+<button type="submit">
+Save Attendance
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<h3>© 2026 Gurukul Classes Management System</h3>
+
+<p>Teacher Attendance Panel</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Teacher Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#07142f,#2747c7);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:400px;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0px 10px 25px rgba(0,0,0,.3);
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#07142f;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    background:#2747c7;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.btn:hover{
+    background:#07142f;
+}
+
+.error{
+    color:red;
+    margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img class="logo"
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPO2C_60H439AKzvgot2uvPBQ5oEb0SrEFYw&s">
+
+<h1>Teacher Login</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input
+type="text"
+name="teacher_id"
+placeholder="Teacher ID"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+
+{% if error %}
+<p class="error">
+{{ error }}
+</p>
+{% endif %}
+
+<button type="submit" class="btn">
+Login
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

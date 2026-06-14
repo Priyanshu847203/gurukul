@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Students</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        /* Header */
+        .header {
+            background: #07142f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            width: 95%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #0b2a5b;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        /* No data */
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Manage Students</h1>
+</div>
+
+<div class="container">
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Roll No</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Course</th>
+            <th>Action</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.father_name }}</td>
+            <td>{{ student.roll_no }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.course }}</td>
+
+            <td>
+                <a class="delete-btn"
+                   href="{% url 'delete_student' student.id %}"
+                   onclick="return confirm('Are you sure you want to delete this student?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="no-data">
+                No students found
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

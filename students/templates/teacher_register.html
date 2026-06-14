@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#07142f;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h2{
+    font-size:32px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+}
+
+/* Header */
+
+.header{
+    background:#2946b6;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.header h1{
+    font-size:45px;
+}
+
+.header p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+/* Container */
+
+.container{
+    width:90%;
+    margin:40px auto;
+}
+
+/* Attendance Box */
+
+.attendance-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#07142f;
+    color:white;
+    padding:15px;
+    font-size:18px;
+}
+
+table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+    font-size:17px;
+}
+
+table tr:hover{
+    background:#f5f5f5;
+}
+
+/* Radio */
+
+input[type="radio"]{
+    width:18px;
+    height:18px;
+    cursor:pointer;
+}
+
+/* Button */
+
+.btn{
+    margin-top:30px;
+    text-align:center;
+}
+
+.btn button{
+    background:#2946b6;
+    color:white;
+    border:none;
+    padding:15px 40px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn button:hover{
+    background:#07142f;
+}
+
+/* Footer */
+
+.footer{
+    margin-top:40px;
+    background:#07142f;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Gurukul Classes</h2>
+
+    <div>
+        <a href="/teacher/dashboard/">Dashboard</a>
+        <a href="/teacher/logout/">Logout</a>
+    </div>
+
+</div>
+
+<div class="header">
+
+    <h1>Mark Attendance</h1>
+    <p>Present / Absent Student Attendance</p>
+
+</div>
+
+<div class="container">
+
+<div class="attendance-box">
+
+<form method="POST">
+
+{% csrf_token %}
+
+<table>
+
+<tr>
+    <th>Roll No</th>
+    <th>Student Name</th>
+    <th>Course</th>
+    <th>Present</th>
+    <th>Absent</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+    <td>{{ student.roll_no }}</td>
+
+    <td>{{ student.name }}</td>
+
+    <td>{{ student.course }}</td>
+
+    <td>
+
+        <input
+        type="radio"
+        name="attendance_{{ student.id }}"
+        value="Present">
+
+    </td>
+
+    <td>
+
+        <input
+        type="radio"
+        name="attendance_{{ student.id }}"
+        value="Absent"
+        checked>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="btn">
+
+<button type="submit">
+    Save Attendance
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+    © 2026 Gurukul Classes Management System
+
+</div>
+
+</body>
+</html>

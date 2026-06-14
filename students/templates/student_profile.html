@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial;
+            background:linear-gradient(135deg,#07142f,#2747c7);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .card{
+            width:450px;
+            background:white;
+            border-radius:15px;
+            padding:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            text-align:center;
+        }
+
+        .profile-img{
+            width:100px;
+            height:100px;
+            border-radius:50%;
+            border:3px solid #2747c7;
+            object-fit:cover;
+        }
+
+        h2{
+            color:#07142f;
+            margin:10px 0 5px;
+        }
+
+        .info{
+            text-align:left;
+            margin-top:20px;
+        }
+
+        .info p{
+            padding:10px;
+            border-bottom:1px solid #eee;
+        }
+
+        .label{
+            font-weight:bold;
+            color:#2747c7;
+        }
+
+        .btn-group{
+            display:flex;
+            justify-content:space-between;
+            margin-top:15px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:10px 15px;
+            background:#2747c7;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            transition:0.3s;
+            width:48%;
+            text-align:center;
+        }
+
+        .btn:hover{
+            background:#07142f;
+        }
+
+        .small-box{
+            background:#f4f6ff;
+            padding:12px;
+            margin-top:15px;
+            border-radius:10px;
+            font-size:15px;
+            font-weight:bold;
+            color:#07142f;
+        }
+
+        /* ATTENDANCE COLOR */
+        .good{
+            color:green;
+        }
+
+        .bad{
+            color:red;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- PROFILE IMAGE -->
+    {% if student.profile_pic %}
+        <img class="profile-img" src="{{ student.profile_pic.url }}">
+    {% else %}
+        <img class="profile-img" src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+    {% endif %}
+
+    <h2>{{ student.name }}</h2>
+    <p>Student Profile</p>
+
+    <div class="info">
+
+        <p><span class="label">Father Name:</span> {{ student.father_name }}</p>
+        <p><span class="label">Roll No:</span> {{ student.roll_no }}</p>
+        <p><span class="label">Email:</span> {{ student.email }}</p>
+        <p><span class="label">Mobile:</span> {{ student.mobile }}</p>
+        <p><span class="label">Course:</span> {{ student.course }}</p>
+
+    </div>
+
+    <!-- ATTENDANCE -->
+    <div class="small-box">
+        Attendance:
+        <span
+            {% if percentage >= 75 %}
+                class="good"
+            {% else %}
+                class="bad"
+            {% endif %}
+        >
+            {{ percentage|floatformat:2 }}%
+        </span>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-group">
+
+        <a href="/student/edit-profile/" class="btn">Edit Profile</a>
+        <a href="/student/dashboard/" class="btn">Back</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

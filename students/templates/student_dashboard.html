@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#07142f;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.menu a:hover{
+    color:yellow;
+}
+
+/* BANNER */
+.banner{
+    background:linear-gradient(135deg,#07142f,#2747c7);
+    color:white;
+    text-align:center;
+    padding:50px;
+}
+
+/* CONTAINER */
+.container{
+    width:90%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    border-radius:15px;
+    box-shadow:0px 5px 15px rgba(0,0,0,.2);
+    transition:.3s;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card a{
+    display:block;
+    padding:30px;
+    text-decoration:none;
+    color:#07142f;
+    text-align:center;
+}
+
+.card h2{
+    margin-bottom:10px;
+    color:#2747c7;
+    font-size:20px;
+}
+
+.card p{
+    color:#555;
+    font-size:14px;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    margin:30px;
+    color:#666;
+    font-size:14px;
+}
+
+/* QUICK TOP BOXES */
+.top-cards{
+    width:90%;
+    margin:20px auto 0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="logo">
+        Gurukul Classes
+    </div>
+
+    <div class="menu">
+        <a href="{% url 'student_dashboard' %}">Dashboard</a>
+
+        <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button style="background:none;border:none;color:white;cursor:pointer;margin-left:20px;">
+                Logout
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+    <h1>Welcome Student</h1>
+    <p>Track Your Attendance & Performance</p>
+</div>
+
+<!-- TOP CARDS (FIXED SECTION) -->
+<div class="top-cards">
+
+    <div class="card">
+        <a href="{% url 'student_test_marks' %}">
+            <h2>📝 Test Marks</h2>
+            <p>View your exam results & scores</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_performance' %}">
+            <h2>📈 Performance</h2>
+            <p>Check your overall progress</p>
+        </a>
+    </div>
+
+</div>
+
+<!-- MAIN FEATURES -->
+<div class="container">
+
+    <div class="card">
+        <a href="{% url 'student_attendance' %}">
+            <h2>📅 Attendance</h2>
+            <p>Mark Present / Absent</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_history' %}">
+            <h2>📖 Attendance History</h2>
+            <p>View Attendance Record</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_monthly_attendance' %}">
+            <h2>📆 Monthly Report</h2>
+            <p>Monthly Attendance</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_test_marks' %}">
+            <h2>📝 Test Marks</h2>
+            <p>Check Test Result</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_performance' %}">
+            <h2>📈 Performance</h2>
+            <p>Overall Performance</p>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="{% url 'student_profile' %}">
+            <h2>👤 My Profile</h2>
+            <p>Student Information</p>
+        </a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Gurukul Classes | Student Management System
+</div>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Performance Report</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+/* HEADER */
+.header{
+    background:#07142f;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+/* CONTAINER */
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+/* TABLE WRAP (RESPONSIVE) */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    box-shadow:0px 5px 15px rgba(0,0,0,.2);
+    min-width:600px;
+}
+
+th{
+    background:#2747c7;
+    color:white;
+    padding:15px;
+    font-size:16px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f5f5f5;
+}
+
+/* RESULT COLORS */
+.good{
+    color:green;
+    font-weight:bold;
+}
+
+.bad{
+    color:red;
+    font-weight:bold;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#2747c7;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#07142f;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    th,td{
+        font-size:14px;
+        padding:10px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Student Performance Report</h1>
+</div>
+
+<div class="container">
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <tr>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Total Marks</th>
+                <th>Percentage</th>
+                <th>Result</th>
+            </tr>
+
+            {% for i in data %}
+
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.roll_no }}</td>
+                <td>{{ i.total_marks }}</td>
+                <td>{{ i.percentage }}%</td>
+
+                <td class="{% if i.result == 'Pass' %}good{% else %}bad{% endif %}">
+                    {{ i.result }}
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <a href="{% url 'teacher_dashboard' %}" class="btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Teacher Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+.navbar{
+    background:#07142f;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+}
+
+.menu a:hover{
+    color:yellow;
+}
+
+.header{
+    background:#2747c7;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.stats{
+    width:90%;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    text-align:center;
+    border-radius:10px;
+    box-shadow:0px 5px 15px rgba(0,0,0,.2);
+}
+
+.box h2{
+    color:#2747c7;
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.box p{
+    color:#555;
+}
+
+.container{
+    width:90%;
+    margin:30px auto;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0px 5px 15px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    color:#07142f;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:gray;
+    margin-bottom:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 20px;
+    background:#2747c7;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.btn:hover{
+    background:#07142f;
+}
+
+.footer{
+    margin-top:40px;
+    text-align:center;
+    padding:20px;
+    background:#07142f;
+    color:white;
+}
+
+@media(max-width:768px){
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">
+Gurukul Classes
+</div>
+
+<div class="menu">
+<a href="{% url 'logout' %}">Logout</a>
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="box">
+<h2>{{ total_students }}</h2>
+<p>Total Students</p>
+</div>
+
+<div class="box">
+<h2>{{ present_students }}</h2>
+<p>Present Today</p>
+</div>
+
+<div class="box">
+<h2>{{ absent_students }}</h2>
+<p>Absent Today</p>
+</div>
+
+<div class="box">
+<h2>{{ total_tests }}</h2>
+<p>Total Test Records</p>
+</div>
+
+</div>
+
+<div class="header">
+
+<h1>Teacher Dashboard</h1>
+
+<p>Manage Students, Attendance and Test Marks</p>
+
+</div>
+
+<div class="container">
+
+<div class="cards">
+
+<!-- Student Registration -->
+
+<div class="card">
+
+<h2>Student Registration</h2>
+
+<p>Add New Students</p>
+
+<a href="{% url 'add_student' %}" class="btn">
+Open
+</a>
+
+</div>
+
+<!-- Mark Attendance -->
+
+<div class="card">
+
+<h2>Mark Attendance</h2>
+
+<p>Present / Absent Students</p>
+
+<a href="{% url 'teacher_mark' %}" class="btn">
+Open
+</a>
+
+</div>
+
+<!-- Manage Students -->
+
+<div class="card">
+
+<h2>Manage Students</h2>
+
+<p>View All Registered Students</p>
+
+<a href="{% url 'manage_students' %}" class="btn">
+Open
+</a>
+
+</div>
+
+<!-- Attendance Report -->
+
+<div class="card">
+
+<h2>Attendance Report</h2>
+
+<p>View Student Attendance</p>
+
+<a href="{% url 'teacher_attendance' %}" class="btn">
+Open
+</a>
+
+</div>
+
+<!-- Add Marks -->
+
+<div class="card">
+
+<h2>Add Test Marks</h2>
+
+<p>Add Subject Wise Marks</p>
+
+<a href="{% url 'add_marks' %}" class="btn">
+Open
+</a>
+
+</div>
+
+<!-- Performance -->
+
+<div class="card">
+
+<h2>Student Performance</h2>
+
+<p>Check Student Performance</p>
+
+<a href="{% url 'teacher_performance' %}" class="btn">
+Open
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<h3>Gurukul Classes Management System</h3>
+
+<p>Teacher Control Panel</p>
+
+</div>
+
+</body>
+</html>

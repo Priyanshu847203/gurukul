@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Student Attendance Report</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    margin-top:30px;
+}
+
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2747c7;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border:1px solid #ddd;
+}
+
+h1{
+    text-align:center;
+    margin:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Student Attendance Report</h1>
+
+<div class="container">
+
+<table>
+
+<tr>
+    <th>Student Name</th>
+    <th>Roll Number</th>
+    <th>Date</th>
+    <th>Status</th>
+</tr>
+
+{% for a in attendance %}
+
+<tr>
+
+<td>{{ a.student.name }}</td>
+
+<td>{{ a.student.roll_no }}</td>
+
+<td>{{ a.date }}</td>
+
+<td>{{ a.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>
